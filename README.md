@@ -1,19 +1,17 @@
-# 🌌 Cosmic Soul - Frontend Hiring Task
+# 🌌 Cosmic Soul - Frontend Task
 
-This is a responsive and animated homepage UI for the **Cosmic Soul** platform, built to fulfill a frontend developer hiring task. It translates a detailed Figma design into a functional **Next.js** application, featuring multiple interactive states and animations.
+This is a responsive and animated homepage UI for the **Cosmic Soul** platform, built to fulfill a frontend developer task. It translates a detailed Figma design into a functional **Next.js** application, featuring multiple interactive states and animations.
 
 ---
 
 ## 🔗 Live Demo
 
 [👉 View Live](#)  
-*(Replace `#` with your Vercel or Netlify live link)*
-
 ---
 
 ## 🖼️ Screenshot
 
-> _Add a screenshot of your finished UI here (e.g., `/public/screenshot.png`)._
+> `/public/Screenshot.png`
 
 ---
 
