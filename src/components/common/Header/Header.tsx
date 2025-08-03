@@ -2,8 +2,9 @@
 
 import Image from 'next/image';
 import { useState } from 'react';
-import { FaRegUserCircle } from "react-icons/fa"; // Import the icon
+import { FaRegUserCircle } from "react-icons/fa";
 import styles from './Header.module.css';
+import Link from 'next/link';
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -12,7 +13,7 @@ const Header = () => {
     <header className={styles.header}>
       <nav className={styles.nav}>
         {/* Logo and Title */}
-        <a href="/" className={styles.logoContainer}>
+        <Link href="/" className={styles.logoContainer}>
           <Image
             src="/cosmic_soul_logo.png"
             alt="Cosmic Soul Logo"
@@ -21,14 +22,14 @@ const Header = () => {
             className={styles.logoImage} // Added class for the drop shadow
           />
           <span className={styles.logoText}>COSMIC SOUL</span>
-        </a>
+        </Link>
 
         {/* Desktop Navigation Links */}
         <ul className={styles.navLinks}>
-          <li><a href="/">Home</a></li>
-          <li><a href="/features">Features</a></li>
-          <li><a href="/about">About Us</a></li>
-          <li><a href="/contact">Contact Us</a></li>
+          <li><Link href="/">Home</Link></li>
+          <li><Link href="/features">Features</Link></li>
+          <li><Link href="/about">About Us</Link></li>
+          <li><Link href="/contact">Contact Us</Link></li>
         </ul>
 
         {/* User Icon for Desktop */}

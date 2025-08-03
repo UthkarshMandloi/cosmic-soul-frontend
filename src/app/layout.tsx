@@ -1,4 +1,3 @@
-import type { Metadata } from "next";
 import { Abel, Cormorant_Garamond, Acme } from "next/font/google";
 import Header from "@/components/common/Header/Header";
 import "./globals.css";
