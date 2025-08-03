@@ -8,6 +8,7 @@ import { MdChatBubble } from "react-icons/md";
 import TextChat from './TextChat';
 import VoiceChat from './VoiceChat';
 
+// --- Sub-component for the initial greeting UI ---
 const Greeting = ({ onStartChat }: { onStartChat: () => void }) => (
   <div className={styles.greetingContainer}>
     <h2 className={styles.greetingText}>
@@ -18,29 +19,39 @@ const Greeting = ({ onStartChat }: { onStartChat: () => void }) => (
 );
 
 const HomePage = () => {
+  // --- State Management ---
+  // Tracks the character's animation (sitting vs. waving)
   const [characterState, setCharacterState] = useState('sitting');
+  // Controls when the main UI elements fade in
   const [uiVisible, setUiVisible] = useState(false);
+  // Controls which interactive mode is active ('greeting', 'text', or 'voice')
   const [interactionMode, setInteractionMode] = useState('greeting');
 
+  // --- Animation Logic ---
   useEffect(() => {
+    // Timer to start the wave animation after an initial delay
     const waveTimer = setTimeout(() => {
       setCharacterState('waving');
+      
+      // Second timer to fade in the UI shortly after the waving animation begins
       const uiTimer = setTimeout(() => setUiVisible(true), 500);
-      return () => clearTimeout(uiTimer);
+      return () => clearTimeout(uiTimer); // Cleanup for inner timer
     }, 1500);
-    return () => clearTimeout(waveTimer);
-  }, []);
 
+    return () => clearTimeout(waveTimer); // Cleanup for outer timer
+  }, []); // Empty dependency array ensures this effect runs only once on mount
+
+  // --- Event Handlers ---
   const handleStartTextChat = () => setInteractionMode('text');
   const handleStartVoiceChat = () => setInteractionMode('voice');
 
+  // --- Sub-component for the character to keep the main return clean ---
   const Character = () => (
     <div className={styles.characterContainer}>
       <Image
         src="/avatar-eyes-open.jpg"
         alt="Character sitting"
         fill
-        // Apply the new slide-up animation to this image
         className={`${styles.characterImage} ${styles.sittingImage} ${characterState === 'sitting' ? styles.visible : ''}`}
       />
       <Image
@@ -55,6 +66,8 @@ const HomePage = () => {
   return (
     <div className={`${styles.homeContainer} ${interactionMode === 'text' ? styles.chatView : ''}`}>
       
+      {/* --- RENDER THE CORRECT UI BASED ON THE CURRENT MODE --- */}
+
       {interactionMode === 'greeting' && (
         <>
           <Character />

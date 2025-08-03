@@ -2,9 +2,10 @@
 
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
-import { useRouter } from 'next/navigation'; // 1. Import the router
+import { useRouter } from 'next/navigation';
 import styles from './Features.module.css';
 
+// --- Data for the animations ---
 const phrases = [
   "You give your all... but feel invisible.",
   "You overthink in silence, but no one checks in",
@@ -19,31 +20,41 @@ const heroImages = [
 ];
 
 const Features = () => {
+  // --- State Management ---
+  // We need two separate states because the text and image arrays have different lengths
+  const [currentPhraseIndex, setCurrentPhraseIndex] = useState(0);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
-  const router = useRouter(); // 2. Initialize the router
+  const router = useRouter();
 
+  // --- Animation Logic ---
   useEffect(() => {
     const interval = setInterval(() => {
+      // Cycle through the text phrases
+      setCurrentPhraseIndex((prevIndex) => (prevIndex + 1) % phrases.length);
+      // Cycle through the images
       setCurrentImageIndex((prevIndex) => (prevIndex + 1) % heroImages.length);
-    }, 4000);
+    }, 4000); // Change every 4 seconds
+
+    // Cleanup the interval when the component is removed
     return () => clearInterval(interval);
   }, []);
 
+  // --- Navigation Handler ---
   const handleNavigateHome = () => {
-    router.push('/'); // Function to navigate to the home page
+    router.push('/');
   };
 
   return (
-    // 3. Add the onClick handler to the main section
     <section className={styles.hero} onClick={handleNavigateHome}>
+      {/* --- Text Content --- */}
       <div className={styles.textContainer}>
         <h2 className={styles.title}>Is This You?</h2>
         <div className={styles.subtitleContainer}>
           {phrases.map((phrase, index) => (
             <h1
-              key={index}
+              key={`phrase-${index}`} // Improved key
               className={`${styles.subtitle} ${
-                index === currentImageIndex ? styles.visible : ""
+                index === currentPhraseIndex ? styles.visible : "" // Use the text index here
               }`}
             >
               {phrase}
@@ -52,16 +63,17 @@ const Features = () => {
         </div>
       </div>
       
+      {/* --- Image Content --- */}
       <div className={styles.imageContainer}>
         {heroImages.map((src, index) => (
            <Image
-            key={index}
+            key={`image-${index}`} // Improved key
             src={src}
             alt="Cosmic Soul character"
             fill
             className={styles.heroImage}
             style={{ 
-              opacity: index === currentImageIndex ? 1 : 0,
+              opacity: index === currentImageIndex ? 1 : 0, // Use the image index here
               transition: 'opacity 0.7s ease-in-out',
             }}
           />

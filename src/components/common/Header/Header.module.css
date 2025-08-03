@@ -1,69 +1,91 @@
+/* =============================================== */
+/* --- Base Mobile Styles --- */
+/* =============================================== */
+
+/* --- Main Header Container --- */
 .header {
-  padding: 0.5rem 1rem; /* Reduced height */
-  /* border-bottom: 1px solid rgba(0, 0, 0, 0.1); */
-  background-color: rgba(211, 156, 138, 0.25); /* Light header on dark body */
-  color: #242424; /* Dark text for header */
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2)
+  /* Vertical and horizontal padding. Adjust to change spacing. */
+  padding: 0.5rem 1rem;
+  
+  /* Header background color and text color */
+  background-color: rgba(211, 156, 138, 0.25);
+  color: #242424;
+
+  /* Shadow effect below the header */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
 }
 
+/* --- Main Navigation Bar --- */
 .nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
+/* --- Logo Section (Image + Text) --- */
 .logoContainer {
   display: flex;
   align-items: center;
+  /* Space between the logo image and text */
   gap: 0.75rem;
   text-decoration: none;
   color: inherit;
 }
 
 .logoImage {
+  /* Shadow effect for the logo image */
   filter: drop-shadow(0 4px 4px rgba(0, 0, 0, 0.25));
 }
 
 .logoText {
-  font-size: 24px;
+  /* Typography for the "COSMIC SOUL" text */
+  font-size: 20px; /* Font size for mobile */
   font-weight: 400;
   letter-spacing: 0.12em;
   line-height: 1.2;
 }
 
+/* --- Desktop Navigation Links --- */
 .navLinks {
+  /* Hidden on mobile by default */
   display: none;
-  gap: 2rem;
   list-style: none;
-  font-size: 24px;
-  font-weight: 400;
-  letter-spacing: 0.12em;
-  line-height: 1.2;
 }
 
 .navLinks a:hover {
+  /* Color of nav links on hover */
   color: #D39C8A;
 }
 
+/* --- Desktop User Icon --- */
 .userIconContainer {
-  cursor: pointer;
-  width: 58px; /* Increased size */
-  height: 58px; /* Increased size */
-  border-radius: 100px;
+  /* Hidden on mobile by default */
+  display: none;
+  
+  /* Size of the circular icon button */
+  width: 58px;
+  height: 58px;
+
+  /* Colors for the icon button */
   background-color: #EADDFF;
   color: #4f378a;
-  display: none; /* Hidden on mobile */
+
+  border-radius: 100px;
+  cursor: pointer;
   align-items: center;
   justify-content: center;
 }
 
+/* --- Mobile Menu (Hamburger) Button --- */
 .menuButton {
+  /* Shown on mobile by default */
   display: block;
   background: none;
   border: none;
   cursor: pointer;
 }
 
+/* --- Mobile Menu Dropdown --- */
 .mobileMenu {
   margin-top: 1rem;
 }
@@ -81,17 +103,38 @@
   font-weight: 600;
 }
 
+
+/* =============================================== */
+/* --- DESKTOP STYLES (for screens 768px and wider) --- */
+/* =============================================== */
 @media (min-width: 768px) {
   .header {
+    /* Larger horizontal padding for desktop */
     padding: 0.5rem 2rem;
   }
+
+  .logoText {
+    /* Larger font size for desktop */
+    font-size: 24px;
+  }
+
   .navLinks {
+    /* Show and style the desktop nav links */
     display: flex;
+    gap: 2rem;
+    font-size: 24px;
+    font-weight: 400;
+    letter-spacing: 0.12em;
+    line-height: 1.2;
   }
+
   .userIconContainer {
+    /* Show the desktop user icon */
     display: flex;
   }
+
   .menuButton {
+    /* Hide the mobile hamburger button on desktop */
     display: none;
   }
 }

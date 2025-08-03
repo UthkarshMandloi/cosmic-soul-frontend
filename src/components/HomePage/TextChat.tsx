@@ -9,7 +9,6 @@ interface Bubble {
   type: string;
 }
 
-// This array must ONLY contain the 4 scrolling bubbles
 const initialBubbles: Bubble[] = [
   { id: 1, type: 'bubble1' },
   { id: 2, type: 'bubble2' },
@@ -23,7 +22,6 @@ const TextChat = () => {
 
   const handleNextBubble = () => {
     if (isAnimating) return;
-
     setIsAnimating(true);
     
     const topBubble = document.getElementById(`bubble-${bubbles[0].id}`);
@@ -46,7 +44,6 @@ const TextChat = () => {
 
   return (
     <div className={styles.chatBox}>
-      {/* This part maps over only the 4 scrolling bubbles */}
       {bubbles.map((bubble, index) => (
         <div
           key={bubble.id}
@@ -55,7 +52,6 @@ const TextChat = () => {
         ></div>
       ))}
 
-      {/* The input bubble is rendered separately and will not move */}
       <div className={`${styles.bubble} ${styles.bubble3}`}>
         <button className={styles.playButton} onClick={handleNextBubble}>
           <BsFillTriangleFill size={20} />

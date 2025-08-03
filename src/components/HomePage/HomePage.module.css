@@ -1,28 +1,31 @@
+/* =============================================== */
+/* --- Base Mobile Styles --- */
+/* =============================================== */
+
 .homeContainer {
   width: 100%;
-  min-height: calc(100vh - 115px);
+  min-height: calc(100vh - 90px);
   position: relative;
   overflow: hidden;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
 }
 
+/* --- CHAT VIEW (Mobile) --- */
 .chatView {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
+  flex-direction: column; /* Stacked on mobile */
   justify-content: center;
   width: 100%;
-  gap: 5rem; /* Increased horizontal space */
-  padding: 0 5%;
+  gap: 1rem;
+  padding: 1rem;
 }
 
 .characterContainer {
   position: relative;
-  margin-top: -4rem; /* Adjusted to align with the chat box */
-  width: 450px;
-  height: 450px;
+  width: 300px;
+  height: 300px;
   flex-shrink: 0;
   z-index: 1;
 }
@@ -40,42 +43,61 @@
   opacity: 1;
 }
 
-.bottomMic {
-  position: absolute;
-  bottom: 2%;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 20;
-}
-
+/* --- GREETING VIEW (Mobile) --- */
 .greetingContainer {
-  position: absolute;
-  top: calc(50% - 8vh);
-  right: 10%;
-  transform: translateY(-50%);
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 4.8rem;
+  gap: 1.5rem;
   z-index: 10;
   animation: fadeIn 1s ease-in-out;
+  padding: 1rem;
 }
 
-.bottomIcons {
+.greetingText {
+  font-family: var(--font-acme);
+  font-size: 32px;
+  font-weight: 400;
+  letter-spacing: 0.1em;
+  color: rgba(16, 15, 11, 1);
+  text-align: center;
+  line-height: 1.2;
+}
+
+.chatButton {
+  font-family: var(--font-abel);
+  width: 100%;
+  max-width: 350px;
+  height: 70px;
+  border-radius: 45px;
+  background: linear-gradient(to right, rgba(210, 151, 134, 1), rgba(213, 123, 96, 1));
+  color: white;
+  font-size: 1.75rem;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 8px 5px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s;
+}
+
+.chatButton:hover {
+  transform: scale(1.05);
+}
+
+.bottomIcons, .bottomMic {
   position: absolute;
-  bottom: calc(7% - 4vh);
+  bottom: 5%;
   left: 50%;
   transform: translateX(-50%);
   display: flex;
-  gap: calc(1.5rem + 11vh);
+  gap: 3rem; /* Good spacing for mobile icons */
   z-index: 10;
 }
 
 .iconButton {
   background-color: rgba(236, 209, 198, 1);
   border-radius: 50%;
-  width: 65px;
-  height: 65px;
+  width: 60px;
+  height: 60px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -85,44 +107,67 @@
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-.greetingText {
-  font-family: var(--font-acme);
-  font-size: 48px;
-  font-weight: 400;
-  letter-spacing: 0.12em;
-  color: rgba(16, 15, 11, 1);
-  text-align: center;
-  line-height: 56px;
-}
-
-.chatButton {
-  font-family: var(--font-abel);
-  width: 450px;
-  height: 90px;
-  border-radius: 45px;
-  background: linear-gradient(to right, rgba(210, 151, 134, 1), rgba(213, 123, 96, 1));
-  color: white;
-  font-size: 3.25rem;
-  border: none;
-  cursor: pointer;
-  box-shadow: 0 11px 5.9px rgba(0, 0, 0, 0.25);
-  transition: transform 0.2s;
-}
-
-.chatButton:hover {
-  transform: scale(1.05);
-}
-
 .sittingImage {
   animation: slideUp 1.5s ease-out forwards;
 }
 
-/* Add these new keyframes for the animation */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
 @keyframes slideUp {
-  from {
-    transform: translateY(50%);
+  from { transform: translateY(50%); }
+  to { transform: translateY(0); }
+}
+
+
+/* =============================================== */
+/* --- DESKTOP STYLES (for screens 1024px and wider) --- */
+/* =============================================== */
+@media (min-width: 1024px) {
+  .chatView {
+    flex-direction: row; /* Side-by-side on desktop */
+    gap: 5rem;
   }
-  to {
-    transform: translateY(0);
+  
+  .characterContainer {
+    width: 450px; /* Restore desktop size */
+    height: 450px;
+    margin-top: 0; /* This fixes the desktop chat alignment */
+  }
+
+  /* When not in chat view, the character is centered absolutely */
+  .homeContainer:not(.chatView) .characterContainer {
+    position: absolute;
+  }
+  
+  .greetingContainer {
+    /* Restore absolute positioning for desktop greeting */
+    position: absolute;
+    top: calc(50% - 8vh);
+    right: 10%;
+    transform: translateY(-50%);
+    gap: 4.8rem;
+  }
+
+  .greetingText {
+    font-size: 48px; /* Restore desktop font size */
+    line-height: 56px;
+  }
+
+  .chatButton {
+    width: 450px; /* Restore desktop button size */
+    height: 90px;
+    font-size: 3.25rem;
+  }
+  
+  .bottomIcons {
+    gap: calc(1.5rem + 11vh); /* Restore desktop gap */
+  }
+
+  .iconButton {
+    width: 65px; /* Restore desktop icon size */
+    height: 65px;
   }
 }
