@@ -1,35 +1,34 @@
+/* =============================================== */
+/* --- Tailwind CSS Directives --- */
+/* =============================================== */
 @import "tailwindcss";
 
 
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
+/* =============================================== */
+/* --- Global App Styles --- */
+/* =============================================== */
 body {
-  background-color: rgb(244, 227, 218);
+  /* Sets the default background color for the entire application. */
+  background-color: #F4E3DA; /* This is the rgb(244, 227, 218) color */
+  
+  /* These flex properties ensure the layout correctly fills the screen height, */
+  /* preventing unnecessary scrollbars. */
   display: flex;
   flex-direction: column;
   min-height: 100vh;
 }
 
+/* The universal selector (*) applies a basic reset to all elements. */
 * {
   box-sizing: border-box;
   padding: 0;
   margin: 0;
 }
 
-.header {
-  padding: 1rem 2rem;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-  background-color: rgba(211, 156, 138, 0.25); 
-  color: #242424; /* Dark text for the header */
-}
-
+/* This rule adjusts the main content area. */
 main.main-content {
-  position: relative; /* Needed for the transform */
+  position: relative;
+  /* A negative margin can be used to pull the main content up slightly. */
+  /* Adjust this value to change the overlap with the header. */
   margin-top: -3rem;
 }

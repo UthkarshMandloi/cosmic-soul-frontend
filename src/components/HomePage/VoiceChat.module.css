@@ -1,38 +1,62 @@
+/* =============================================== */
+/* --- Main Voice UI Container --- */
+/* =============================================== */
 .voiceContainer {
+  /* This container acts as a full-screen overlay for the voice chat UI */
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
+  
+  /* Initial fade-in animation for the whole view */
   animation: fadeIn 0.5s ease-in-out;
 }
 
+
+/* =============================================== */
+/* --- Decorative Bubble --- */
+/* =============================================== */
 .singleBubble {
+  /* This bubble is positioned absolutely, relative to the main container */
   position: absolute;
-  top: 20%; /* Moved up to be nearer the head */
-  left: 58%; /* Adjusted horizontal position */
+  /* Adjust 'top' and 'left' to position it near the character's head */
+  top: 20%;
+  left: 58%;
+  
+  /* Adjust size as needed */
   width: 8rem;
   height: 4rem;
+  
+  /* Styling */
   background-color: rgba(213, 123, 96, 1);
   border-radius: 9999px;
 }
 
+
+/* =============================================== */
+/* --- Bottom UI Elements --- */
+/* =============================================== */
 .bottomTray {
+  /* This container holds the waveform and icon at the bottom */
   position: absolute;
   bottom: 5%;
   left: 50%;
-  transform: translateX(-50%);
+  transform: translateX(-50%); /* Horizontally centers the tray */
+  
+  /* Layout for items inside the tray */
   display: flex;
   align-items: center;
-  gap: 8rem; /* Increased gap between waveform and icon */
+  gap: 8rem; /* Space between the waveform and the icon */
 }
 
+/* --- Waveform Animation --- */
 .waveform {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 5px;
-  height: 50px;
+  gap: 5px; /* Space between each bar */
+  height: 50px; /* Controls the max height of the wave */
 }
 
 .bar {
@@ -40,9 +64,12 @@
   height: 100%;
   background-color: #333;
   border-radius: 9999px;
+  
+  /* The 'wave' animation is applied to each bar */
   animation: wave 1.2s ease-in-out infinite alternate;
 }
 
+/* This trick creates the wave effect by starting each bar's animation at a different time */
 .bar:nth-child(1) { animation-delay: -1.0s; }
 .bar:nth-child(2) { animation-delay: -0.8s; }
 .bar:nth-child(3) { animation-delay: -0.6s; }
@@ -56,11 +83,15 @@
 .bar:nth-child(11) { animation-delay: -0.6s; }
 
 
+/* --- Icon Button --- */
 .iconButton {
   background-color: rgba(236, 209, 198, 1);
   border-radius: 50%;
+  
+  /* Adjust size of the button */
   width: 73px;
   height: 73px;
+  
   display: flex;
   align-items: center;
   justify-content: center;
@@ -69,12 +100,16 @@
   color: rgb(29, 27, 32);
 }
 
+
+/* =============================================== */
+/* --- Keyframe Animations --- */
+/* =============================================== */
 @keyframes fadeIn {
   from { opacity: 0; }
   to { opacity: 1; }
 }
 
 @keyframes wave {
-  from { transform: scaleY(0.1); }
-  to { transform: scaleY(1.0); }
+  from { transform: scaleY(0.1); } /* Bar is at its shortest */
+  to { transform: scaleY(1.0); }   /* Bar is at its tallest */
 }

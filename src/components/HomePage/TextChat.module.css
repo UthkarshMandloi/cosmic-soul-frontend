@@ -1,90 +1,133 @@
+/* =============================================== */
+/* --- Main Chat Box Container --- */
+/* =============================================== */
 .chatBox {
+  /* Sizing and layout */
   width: 90%;
   max-width: 40rem;
-  border: 2px solid white;
-  border-radius: 2rem;
   padding: 1.5rem;
   display: flex;
   flex-direction: column;
-  gap: 1rem;
-  backdrop-filter: blur(10px);
+  gap: 1rem; /* Space between bubbles */
+  overflow: hidden; /* Hides bubbles that animate out */
+  
+  /* Appearance */
+  border: 2px solid white;
+  border-radius: 2rem;
+  backdrop-filter: blur(10px); /* Frosted glass effect */
+
+  /* Animation */
   animation: fadeIn 0.5s ease-in-out;
-  overflow: hidden;
 }
 
+
+/* =============================================== */
+/* --- Chat Bubble Styles --- */
+/* =============================================== */
 .bubble {
+  /* Base bubble styling */
   height: 2.5rem;
-  border-radius: 9999px;
+  border-radius: 9999px; /* Pill shape */
   opacity: 0.8;
+  
+  /* Enables smooth animation when bubbles move */
   transition: transform 0.5s ease-in-out;
 }
 
+/* Modifier class for user's messages (right-aligned) */
 .bubble1 {
   background-color: rgba(224, 191, 181, 1);
   align-self: flex-end;
   width: 70%;
 }
 
+/* Modifier class for AI's messages (left-aligned) */
 .bubble2 {
   background-color: rgba(213, 123, 96, 1);
   align-self: flex-start;
   width: 80%;
 }
 
+/* Modifier class for the last bubble containing the play button */
 .bubble3 {
   background-color: rgb(165, 165, 165);
   display: flex;
   width: 100%;
   align-items: center;
-  justify-content: flex-end;
+  justify-content: flex-end; /* Pushes button to the right */
   padding-right: 0.5rem;
 }
 
+
+/* =============================================== */
+/* --- Button Styles --- */
+/* =============================================== */
 .playButton {
+  /* Appearance */
   background-color: rgba(213, 122, 96, 1);
+  color: rgba(217, 217, 217, 1);
+  
+  /* Size and shape */
   width: 32px;
   height: 32px;
-  border-radius: 50%;
+  border-radius: 50%; /* Makes it a circle */
+
+  /* Centering the icon inside */
   display: flex;
   align-items: center;
   justify-content: center;
+  padding-left: 3px; /* Nudges icon to appear more centered */
+  
+  /* Interactivity & Rotation */
   border: none;
   cursor: pointer;
-  color: rgba(217, 217, 217, 1);
-  padding-left: 3px;
-  transform: rotate(90deg);
+  transform: rotate(90deg); /* Points the triangle right */
 }
 
-/* Animation Classes */
+
+/* =============================================== */
+/* --- Animations and Keyframes --- */
+/* =============================================== */
+
+/* Class applied to make a bubble animate out of view */
 .bubbleOut {
   animation: scrollUpOut 0.5s ease-in-out forwards;
 }
 
+/* Class applied to make a new bubble animate into view */
 .bubbleIn {
   animation: popUpIn 0.5s ease-in-out forwards;
 }
 
+/* Simple fade-in effect for the whole chat box */
 @keyframes fadeIn {
   from { opacity: 0; }
   to { opacity: 1; }
 }
 
+/* Defines the animation for a bubble leaving */
 @keyframes scrollUpOut {
   from { transform: translateY(0); opacity: 1; }
   to { transform: translateY(-100%); opacity: 0; }
 }
 
+/* Defines the animation for a bubble entering */
 @keyframes popUpIn {
   from { transform: translateY(100%); opacity: 0; }
   to { transform: translateY(0); opacity: 1; }
 }
 
-/* --- Desktop Styles --- */
+
+/* =============================================== */
+/* --- DESKTOP STYLES (for screens 768px and wider) --- */
+/* =============================================== */
 @media (min-width: 768px) {
   .chatBox {
+    /* Larger padding on desktop */
     padding: 2rem;
   }
   .bubble {
+    /* Taller bubbles on desktop */
     height: 3.5rem;
   }
 }
