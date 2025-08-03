@@ -1,0 +1,128 @@
+.homeContainer {
+  width: 100%;
+  min-height: calc(100vh - 115px);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.chatView {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  gap: 5rem; /* Increased horizontal space */
+  padding: 0 5%;
+}
+
+.characterContainer {
+  position: relative;
+  margin-top: -4rem; /* Adjusted to align with the chat box */
+  width: 450px;
+  height: 450px;
+  flex-shrink: 0;
+  z-index: 1;
+}
+
+.characterImage {
+  object-fit: contain;
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+}
+
+.visible {
+  opacity: 1;
+}
+
+.bottomMic {
+  position: absolute;
+  bottom: 2%;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 20;
+}
+
+.greetingContainer {
+  position: absolute;
+  top: calc(50% - 8vh);
+  right: 10%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4.8rem;
+  z-index: 10;
+  animation: fadeIn 1s ease-in-out;
+}
+
+.bottomIcons {
+  position: absolute;
+  bottom: calc(7% - 4vh);
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: calc(1.5rem + 11vh);
+  z-index: 10;
+}
+
+.iconButton {
+  background-color: rgba(236, 209, 198, 1);
+  border-radius: 50%;
+  width: 65px;
+  height: 65px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  cursor: pointer;
+  color: rgb(29, 27, 32);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.greetingText {
+  font-family: var(--font-acme);
+  font-size: 48px;
+  font-weight: 400;
+  letter-spacing: 0.12em;
+  color: rgba(16, 15, 11, 1);
+  text-align: center;
+  line-height: 56px;
+}
+
+.chatButton {
+  font-family: var(--font-abel);
+  width: 450px;
+  height: 90px;
+  border-radius: 45px;
+  background: linear-gradient(to right, rgba(210, 151, 134, 1), rgba(213, 123, 96, 1));
+  color: white;
+  font-size: 3.25rem;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 11px 5.9px rgba(0, 0, 0, 0.25);
+  transition: transform 0.2s;
+}
+
+.chatButton:hover {
+  transform: scale(1.05);
+}
+
+.sittingImage {
+  animation: slideUp 1.5s ease-out forwards;
+}
+
+/* Add these new keyframes for the animation */
+@keyframes slideUp {
+  from {
+    transform: translateY(50%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
